@@ -11,7 +11,7 @@ tags:
   - deep-learning
   - pytorch
   - fastapi
-short_description: AI-Based Retinal Disease Detection & Clinical Screening Platform
+short_description: AI retinal disease detection & screening
 ---
 
 # RetinaVision AI: Clinical Retinal Disease Detection & Explainable Screening Platform

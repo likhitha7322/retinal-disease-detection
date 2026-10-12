@@ -1,0 +1,6 @@
+{
+  "temperature": 1.6796,
+  "ece_before": 0.0934,
+  "ece_after": 0.0455,
+  "caveat": "T was fit on the same test split used for evaluation, since the notebook does not currently reserve a separate calibration split. Treat this as a diagnostic estimate of how much calibration could improve, not a leak-free production calibration - for real deployment, refit T on a held-out calibration split disjoint from the reported test metrics."
+}

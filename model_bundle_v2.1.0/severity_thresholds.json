@@ -1,0 +1,15 @@
+{
+  "cataract": {
+    "laplacian_severe": 260.89,
+    "laplacian_moderate": 468.59
+  },
+  "amd": {
+    "early_max": 0.15,
+    "intermediate_max": 0.35
+  },
+  "glaucoma_cdr": {
+    "normal_max": 0.3,
+    "mild_max": 0.5,
+    "moderate_max": 0.7
+  }
+}

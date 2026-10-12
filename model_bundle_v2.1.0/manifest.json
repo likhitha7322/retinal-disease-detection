@@ -1,0 +1,56 @@
+{
+  "bundle_version": "2.1.0",
+  "created_at": "2026-09-16T20:14:36.170564",
+  "intended_use": "Decision-support AI for retinal fundus photograph screening.",
+  "disclaimer": "This system is a clinical decision-support tool, not a medical device or definitive diagnosis.",
+  "architectures": {
+    "classifier": "EfficientNet-B3 (timm)",
+    "multitask_dr_severity": "MultiTaskEfficientNet (backbone + 5-grade ICDR linear head)",
+    "glaucoma_segmentation": "LightUNet (3-class: background, optic disc, optic cup)",
+    "lesion_segmentation": "LesionUNet (4-channel: Microaneurysms, Haemorrhages, Hard Exudates, Soft Exudates)",
+    "fundus_gate": "FundusGateNet (4-stage CNN binary classifier)"
+  },
+  "classes": [
+    "AMD",
+    "Cataract",
+    "Diabetic_Retinopathy",
+    "Glaucoma",
+    "Normal"
+  ],
+  "artifacts": {
+    "classifier.pth": {
+      "size_bytes": 43366204,
+      "sha256": "a75c08f5522a0a499f94bad86a72263cf113e0195ac7139ecd0f32f2b550d223"
+    },
+    "multitask_severity.pth": {
+      "size_bytes": 43413414,
+      "sha256": "f90fe71c2950d7c67dd2c31b57668ee0fa3b302d0ee936aac280e569265d6f2d"
+    },
+    "seg_glaucoma.pth": {
+      "size_bytes": 31133366,
+      "sha256": "7fa4b5578bda2a0eba9112863027ea4a403d66bb909e2edec84760edbb979999"
+    },
+    "lesion_dr.pth": {
+      "size_bytes": 31133914,
+      "sha256": "d0fbf7bc783891582558ec71f4712506de9be9bcdd5dbfc4e56e574076a5cfee"
+    },
+    "fundus_gate.pth": {
+      "size_bytes": 404666,
+      "sha256": "68f94f10ceaadff6da3d64bc22cd7fb682ba01a8f287303dd4c945d343dc771f"
+    },
+    "class_names.json": {
+      "size_bytes": 93,
+      "sha256": "f033545d8f07f30efa048708b14e67ee16fe8f5855125bf7586df32640bd3e2e"
+    },
+    "calibration_temperature.json": {
+      "size_bytes": 442,
+      "sha256": "476ae05857d3cb6dbd06419635f18ce142d256286cd195b8cd8090d2d80e5754"
+    }
+  },
+  "test_metrics_summary": {
+    "precision": 0.8170690061715377,
+    "recall": 0.8178066037735849,
+    "f1-score": 0.8170244574935516,
+    "support": 1696.0
+  }
+}

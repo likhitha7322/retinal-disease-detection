@@ -1,0 +1,18 @@
+{
+  "geometric": {
+    "aspect_ratio_min": 0.6,
+    "aspect_ratio_max": 1.5,
+    "fov_ratio_min": 0.25,
+    "fov_ratio_max": 1.0,
+    "red_dominance_min": 0.15,
+    "green_std_min": 3.0
+  },
+  "learned_gate": {
+    "fundus_prob_threshold": 0.5,
+    "img_size": 128
+  },
+  "confidence_entropy": {
+    "conf_thresh": 0.4468,
+    "entropy_thresh": 1.2589
+  }
+}

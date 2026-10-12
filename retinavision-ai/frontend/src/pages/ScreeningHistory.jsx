@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { History, Search, Eye, Edit, Printer, Download, Trash2, ChevronLeft, ChevronRight, Filter } from 'lucide-react';
+import { History, Search, Eye, Edit, Printer, Download, Trash2, ChevronLeft, ChevronRight, Filter, RefreshCw } from 'lucide-react';
 import { getScreeningHistory, deleteScreening, updateScreeningPatientInfo } from '../services/screeningService';
 import { formatDate, formatConfidence } from '../utils/formatters';
 import StatusBadge from '../components/StatusBadge';
@@ -9,7 +9,7 @@ import ConfirmDialog from '../components/ConfirmDialog';
 import ClinicalReport from '../components/ClinicalReport';
 import EditPatientModal from '../components/EditPatientModal';
 
-import { exportScreeningToExcel } from '../services/exportService';
+import { exportScreeningToExcel, exportAllPatientsToExcel } from '../services/exportService';
 import { saveLocalPatient, createPatient } from '../services/patientService';
 import { useAppContext } from '../context/AppContext';
 
@@ -31,7 +31,67 @@ export default function ScreeningHistory() {
   const [deleteTarget, setDeleteTarget] = useState(null);
   const [activeReportRecord, setActiveReportRecord] = useState(null);
   const [editingRecordPatient, setEditingRecordPatient] = useState(null);
+  const [exportingPatients, setExportingPatients] = useState(false);
 
+  const handleExportPatients = async () => {
+    setExportingPatients(true);
+    try {
+      const { getPatients, getLocalPatients } = await import('../services/patientService');
+
+      // Source 1: backend API patients
+      const apiPatients = await getPatients();
+
+      // Source 2: localStorage patients (registered offline or not yet synced)
+      const localPatients = getLocalPatients();
+
+      // Source 3: unique patients extracted from screenings already in state
+      // (catches patients who had a scan but were never formally registered)
+      const screeningPatients = screenings
+        .filter((s) => s.patientId || s.patientName)
+        .map((s) => ({
+          id:                 s.patientId || '',
+          name:               s.patientName || 'Unnamed Patient',
+          age:                s.age || '',
+          gender:             s.gender || '',
+          phone:              s.phone || '',
+          diabetesStatus:     s.diabetesStatus || '',
+          diabetesDuration:   s.diabetesDuration || '',
+          bloodPressure:      s.bloodPressure || '',
+          department:         s.department || '',
+          referringClinician: s.referringClinician || '',
+          visitDate:          s.capturedAt ? s.capturedAt.split('T')[0] : '',
+          notes:              s.notes || '',
+          created_at:         s.capturedAt || '',
+        }));
+
+      // Merge and deduplicate: prefer API data > local > screening-derived
+      const seen = new Map();
+      const allSources = [...apiPatients, ...localPatients, ...screeningPatients];
+
+      allSources.forEach((p) => {
+        // Build a stable key: use id when available, fall back to "name|age"
+        const key = (p.id || '').trim() || `${(p.name || '').toLowerCase()}|${p.age}`;
+        if (!key || key === '|') return; // skip completely empty records
+        if (!seen.has(key)) {
+          seen.set(key, p);
+        } else {
+          // Keep the richer record (more non-empty fields wins)
+          const existing = seen.get(key);
+          const existingScore = Object.values(existing).filter(Boolean).length;
+          const newScore     = Object.values(p).filter(Boolean).length;
+          if (newScore > existingScore) seen.set(key, p);
+        }
+      });
+
+      const merged = Array.from(seen.values());
+      exportAllPatientsToExcel(merged);
+      showToast(`Exported ${merged.length} patient records to Excel.`, 'success');
+    } catch (err) {
+      showToast('Failed to export patient list: ' + (err.message || 'Unknown error'), 'error');
+    } finally {
+      setExportingPatients(false);
+    }
+  };
 
   const loadData = async () => {
     setLoading(true);
@@ -101,7 +161,23 @@ export default function ScreeningHistory() {
               Searchable historical database of vitreo-retinal scans &amp; diagnostic predictions
             </p>
           </div>
-          <span className="badge badge-info">{filtered.length} Records Found</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+            <span className="badge badge-info">{filtered.length} Records Found</span>
+            <button
+              className="btn btn-secondary btn-sm"
+              onClick={handleExportPatients}
+              disabled={exportingPatients}
+              title="Download complete patient list as Excel file"
+              style={{ display: 'flex', alignItems: 'center', gap: '5px' }}
+            >
+              {exportingPatients ? (
+                <RefreshCw size={13} className="spin" />
+              ) : (
+                <Download size={13} />
+              )}
+              <span>{exportingPatients ? 'Exporting…' : 'Export Patient List'}</span>
+            </button>
+          </div>
         </div>
 
         <form onSubmit={handleSearchSubmit} className="history-filter-bar">

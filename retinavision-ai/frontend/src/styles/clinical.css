@@ -1,0 +1,321 @@
+:root {
+  /* Splash Screen Color System */
+  --bg-gradient: linear-gradient(135deg, #FFFFFF 0%, #F1F6FD 45%, #E2EDFA 100%);
+  --primary-blue: #1F4FBF;
+  --primary-blue-hover: #173FA3;
+  --primary-blue-light: #EFF5FF;
+  --primary-blue-subtle: rgba(31, 79, 191, 0.08);
+
+  --deep-navy: #16356B;
+  --text-main: #16356B;
+  --text-muted: #536B8D;
+  --text-light: #7E95B5;
+
+  /* Frosted Glass Cards & Containers */
+  --card-bg: rgba(255, 255, 255, 0.84);
+  --card-bg-solid: #FFFFFF;
+  --card-border: rgba(195, 218, 245, 0.85);
+  --card-border-hover: rgba(145, 185, 235, 0.95);
+  --card-shadow: 0 8px 28px rgba(22, 53, 107, 0.06);
+  --card-shadow-hover: 0 12px 36px rgba(22, 53, 107, 0.1);
+
+  /* Clinical Severity Palette */
+  --green: #10B981;
+  --greenbg: #ECFDF5;
+  --green-border: rgba(16, 185, 129, 0.35);
+
+  --amber: #F59E0B;
+  --amberbg: #FFFBEB;
+  --amber-border: rgba(245, 158, 11, 0.35);
+
+  --red: #EF4444;
+  --redbg: #FEF2F2;
+  --red-border: rgba(239, 68, 68, 0.35);
+
+  --urgent: #B91C1C;
+  --urgentbg: #FFF1F2;
+
+  /* Typography & Layout Tokens */
+  --radius: 14px;
+  --radius-sm: 8px;
+  --radius-lg: 20px;
+  --font-sans: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
+  --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg-gradient);
+  font-family: var(--font-sans);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: all 0.2s ease;
+}
+
+/* Base App Layout */
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+}
+
+.main-content {
+  flex: 1;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 32px 28px 64px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Frosted Glass Card */
+.glass-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+  padding: 24px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.glass-card:hover {
+  border-color: var(--card-border-hover);
+}
+
+/* Primary Button */
+.btn-primary {
+  background: var(--primary-blue);
+  color: #FFFFFF;
+  padding: 10px 22px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(31, 79, 191, 0.28);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: var(--primary-blue-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(31, 79, 191, 0.36);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--deep-navy);
+  border: 1px solid var(--card-border);
+  padding: 9px 20px;
+  border-radius: 24px;
+  font-size: 13.5px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: #FFFFFF;
+  border-color: var(--primary-blue);
+  color: var(--primary-blue);
+  box-shadow: 0 4px 12px rgba(22, 53, 107, 0.08);
+}
+
+/* Navigation Links */
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all 0.18s ease;
+}
+
+.nav-item:hover {
+  color: var(--primary-blue);
+  background: rgba(31, 79, 191, 0.06);
+}
+
+.nav-item-active {
+  color: var(--primary-blue) !important;
+  font-weight: 600;
+  background: rgba(31, 79, 191, 0.1) !important;
+}
+
+/* KPI / Stat Badge */
+.kpi-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.kpi-title {
+  font-size: 12.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.kpi-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--deep-navy);
+  line-height: 1;
+}
+
+/* Clinical Table */
+.clinical-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: left;
+}
+
+.clinical-table th {
+  background: rgba(235, 244, 255, 0.8);
+  color: var(--deep-navy);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.clinical-table th:first-child {
+  border-top-left-radius: var(--radius-sm);
+}
+
+.clinical-table th:last-child {
+  border-top-right-radius: var(--radius-sm);
+}
+
+.clinical-table td {
+  padding: 14px 16px;
+  font-size: 13.5px;
+  border-bottom: 1px solid rgba(220, 235, 250, 0.6);
+  color: var(--text-main);
+  vertical-align: middle;
+}
+
+.clinical-table tr:hover td {
+  background: rgba(245, 250, 255, 0.7);
+}
+
+/* Spinner Animation */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.spin {
+  animation: spin 1.2s linear infinite;
+}
+
+/* FadeIn Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease;
+}
+
+/* Skeleton Loader */
+@keyframes skeleton-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #E8EFF8 25%, #F4F7FC 50%, #E8EFF8 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s infinite linear;
+  border-radius: 6px;
+}
+
+/* Animated confidence/probability bar */
+@keyframes barGrow {
+  from { width: 0; }
+}
+
+.prob-bar {
+  animation: barGrow 0.5s ease-out;
+}
+
+/* Print Styling */
+@media print {
+  body {
+    background: #FFFFFF !important;
+  }
+  header, footer, .no-print {
+    display: none !important;
+  }
+  .main-content {
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+  .glass-card {
+    box-shadow: none !important;
+    border: 1px solid #CCC !important;
+    backdrop-filter: none !important;
+  }
+}
+
+/* Responsive breakpoint */
+@media (max-width: 900px) {
+  .main-content {
+    padding: 20px 14px 48px;
+  }
+}

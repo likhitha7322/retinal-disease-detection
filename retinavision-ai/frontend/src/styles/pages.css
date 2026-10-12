@@ -1,0 +1,436 @@
+@import './variables.css';
+
+/* ============================================================
+   CLINICAL DATA TABLE (Dashboard & History)
+   ============================================================ */
+.clinical-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background-color: var(--white);
+}
+
+.clinical-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13px;
+}
+
+.clinical-table th {
+  background-color: var(--surface-alt);
+  color: var(--primary-navy);
+  font-weight: 700;
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.clinical-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-main);
+  vertical-align: middle;
+}
+
+.clinical-table tr:last-child td {
+  border-bottom: none;
+}
+
+.clinical-table tbody tr:hover td {
+  background-color: #F8FAFD;
+}
+
+/* ============================================================
+   PAGE: DASHBOARD
+   ============================================================ */
+.dashboard-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4);
+}
+
+.priority-banner {
+  background-color: var(--warning-bg);
+  border: 1px solid var(--warning-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.priority-banner-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.priority-banner-left strong {
+  display: block;
+  font-size: 13.5px;
+  color: var(--warning);
+}
+
+.priority-banner-left span {
+  font-size: 12px;
+  color: #784E07;
+}
+
+.dashboard-split-layout {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: var(--space-6);
+}
+
+/* ============================================================
+   PAGE: PATIENT DETAILS FORM
+   ============================================================ */
+.form-grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.form-full-width {
+  grid-column: 1 / -1;
+}
+
+.form-field-req {
+  color: var(--danger);
+  margin-left: 2px;
+}
+
+.form-actions-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border-light);
+}
+
+/* ============================================================
+   PAGE: FUNDUS UPLOAD
+   ============================================================ */
+.upload-layout-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: var(--space-6);
+}
+
+.rejection-alert-card {
+  background-color: var(--danger-bg);
+  border: 1px solid var(--danger-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.rejection-alert-card strong {
+  display: block;
+  font-size: 14.5px;
+  color: var(--danger);
+  margin-bottom: 4px;
+}
+
+.rejection-alert-card p {
+  font-size: 12.5px;
+  color: #8C242D;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   PAGE: AI ANALYSIS RESULTS
+   ============================================================ */
+.diagnosis-hero-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+  box-shadow: var(--shadow-card);
+}
+
+.diagnosis-label-sub {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--muted-text);
+}
+
+.diagnosis-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--primary-navy);
+  margin-top: 4px;
+  line-height: 1.2;
+}
+
+.diagnosis-metric-group {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.metric-pill-box {
+  background-color: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 16px;
+  min-width: 140px;
+}
+
+.metric-pill-box .metric-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--muted-text);
+  letter-spacing: 0.3px;
+}
+
+.metric-pill-box .metric-val {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--primary-navy);
+  margin-top: 2px;
+}
+
+.metric-pill-box .metric-val.teal {
+  color: var(--primary-teal);
+}
+
+.metric-pill-box .metric-sub {
+  font-size: 10.5px;
+  color: var(--text-light);
+}
+
+.analysis-main-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+}
+
+/* ============================================================
+   PAGE: SCREENING HISTORY
+   ============================================================ */
+.history-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.history-search-input {
+  position: relative;
+  flex: 1;
+  min-width: 260px;
+}
+
+.history-search-input svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-light);
+}
+
+.history-search-input input {
+  padding-left: 36px;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--border-light);
+  font-size: 12px;
+  color: var(--muted-text);
+}
+
+/* ============================================================
+   PAGE: MODEL INFORMATION
+   ============================================================ */
+.pipeline-flow-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: var(--space-5) var(--space-4);
+  background-color: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin: var(--space-5) 0;
+}
+
+.pipeline-flow-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 8px 12px;
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--primary-navy);
+  min-width: 120px;
+}
+
+.pipeline-flow-step span {
+  font-size: 10px;
+  color: var(--muted-text);
+  font-weight: normal;
+  margin-top: 2px;
+}
+
+.pipeline-flow-arrow {
+  color: var(--primary-teal);
+  display: flex;
+  align-items: center;
+}
+
+/* ============================================================
+   PAGE: SETTINGS
+   ============================================================ */
+.toggle-switch-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-light);
+  background-color: var(--surface-alt);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  margin-bottom: var(--space-2);
+}
+
+.toggle-switch-label:hover {
+  background-color: var(--white);
+}
+
+.toggle-switch-text strong {
+  display: block;
+  font-size: 13px;
+  color: var(--text-main);
+}
+
+.toggle-switch-text span {
+  font-size: 11.5px;
+  color: var(--muted-text);
+}
+
+/* Custom CSS Switch */
+.switch-input {
+  position: relative;
+  width: 40px;
+  height: 22px;
+  appearance: none;
+  background-color: #CBD5E1;
+  border-radius: var(--radius-pill);
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.switch-input:checked {
+  background-color: var(--primary-teal);
+}
+
+.switch-input::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: var(--white);
+  transition: transform 0.2s ease;
+}
+
+.switch-input:checked::before {
+  transform: translateX(18px);
+}
+
+/* ============================================================
+   PAGE: HELP & SUPPORT
+   ============================================================ */
+.sop-step-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.sop-step-card {
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background-color: var(--surface-alt);
+  position: relative;
+}
+
+.sop-step-num {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--primary-teal);
+  font-family: var(--font-mono);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.sop-step-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary-navy);
+}
+
+.sop-step-desc {
+  font-size: 12px;
+  color: var(--muted-text);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .dashboard-split-layout,
+  .upload-layout-grid,
+  .analysis-main-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-grid-2col {
+    grid-template-columns: 1fr;
+  }
+}
+

@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  retinavision-ai:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: retinavision-ai-app
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - RETINA_MODEL_BUNDLE=/app/model_bundle_v2.1.0
+      - RETINA_USE_CLAHE=false
+      - RETINA_USE_TTA=false
+      - ALLOWED_ORIGINS=http://localhost:8000,http://127.0.0.1:8000
+    volumes:
+      # Persist SQLite clinical database, uploaded scans, and generated PDF reports
+      - ./data:/app/data
+      - ./uploads:/app/uploads
+      - ./reports:/app/reports
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      start_period: 40s
+      retries: 3

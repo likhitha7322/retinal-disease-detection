@@ -1,0 +1,143 @@
+/* ============================================================
+   RETINAVISION AI - CLINICAL A4 PRINT STYLESHEET
+   ============================================================ */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 10mm 12mm 10mm 12mm;
+  }
+
+  /* Force light theme and reset body/html margins for printing */
+  html, body {
+    background: #FFFFFF !important;
+    color: #1E293B !important;
+    font-size: 11pt !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* 1. Hide UI navigation, header, sidebar, buttons, and toast notifications */
+  .sidebar,
+  .topbar,
+  .site-footer,
+  .brand-watermark-container,
+  .no-print,
+  .no-print *,
+  button,
+  .btn,
+  .toast-container,
+  .modal-backdrop:not(.print-active) {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* 2. Hide background page elements outside of printable report modal */
+  .patient-summary-strip,
+  .viewer-header,
+  .viewer-side-by-side,
+  .viewer-blend-container,
+  .prob-item,
+  .stat-card,
+  .card,
+  .dashboard-grid,
+  .data-table-container,
+  .disease-info-card,
+  .disease-model-info-card,
+  .viewer-toggle-group,
+  .viewer-slider-bar,
+  .viewer-disclaimer-box {
+    display: none !important;
+  }
+
+  /* 3. Keep parent layout containers visible so child modal can render */
+  #root,
+  .app-layout,
+  .main-wrapper,
+  .content-area,
+  .fade-in {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    position: static !important;
+    overflow: visible !important;
+  }
+
+  /* 4. Format .modal-backdrop.print-active as a clean A4 sheet */
+  .modal-backdrop.print-active {
+    position: static !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #FFFFFF !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    overflow: visible !important;
+  }
+
+  /* 5. Format .clinical-report-sheet content */
+  .clinical-report-sheet {
+    position: static !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #FFFFFF !important;
+    color: #1E293B !important;
+    border: none !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+  }
+
+  .clinical-report-sheet * {
+    visibility: visible !important;
+  }
+
+  .clinical-report-sheet > div {
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+    padding: 0 !important;
+  }
+
+  .clinical-report-sheet h1,
+  .clinical-report-sheet h2,
+  .clinical-report-sheet h3 {
+    color: #0B2438 !important;
+  }
+
+  /* Image sizing for print */
+  .print-img-box {
+    max-height: 145px !important;
+    width: auto !important;
+    border: 1px solid #CBD5E1 !important;
+    object-fit: contain !important;
+  }
+
+  .print-avoid-break {
+    page-break-inside: avoid;
+  }
+}
+
+
+
+

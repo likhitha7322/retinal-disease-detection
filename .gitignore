@@ -1,0 +1,81 @@
+# ==============================================================================
+# RetinaVision AI — .gitignore
+# Only commits what the Docker container actually needs:
+#   model_bundle_v2.1.0/, retina_ai/, retinavision-ai/frontend/,
+#   Dockerfile, requirements.txt, README.md, pyproject.toml, .gitattributes
+# ==============================================================================
+
+# ── Training datasets (65+ GB — do NOT commit) ────────────────────────────────
+model/
+models/
+
+# ── Python virtual environments ───────────────────────────────────────────────
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# ── Python cache / packaging ──────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+build/
+dist/
+.eggs/
+MANIFEST
+.installed.cfg
+retina_ai.egg-info/
+
+# ── Node.js ───────────────────────────────────────────────────────────────────
+node_modules/
+/frontend/
+/backend/
+retinavision-ai/frontend/node_modules/
+retinavision-ai/backend/node_modules/
+
+# ── Frontend build output (built inside Docker; do NOT commit) ────────────────
+retinavision-ai/frontend/dist/
+
+# ── Ephemeral runtime directories ─────────────────────────────────────────────
+data/
+uploads/
+reports/
+
+# ── Secrets ───────────────────────────────────────────────────────────────────
+.env
+!.env.example
+
+# ── OS / IDE ──────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ── Test / coverage ───────────────────────────────────────────────────────────
+.pytest_cache/
+.tox/
+.nox/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+nosetests.xml
+*.cover
+
+# ── Jupyter ───────────────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# ── Scratch / local-only folders ──────────────────────────────────────────────
+scratch/
+portfolio/
+scripts/
+training/
+docs/

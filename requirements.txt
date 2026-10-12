@@ -1,0 +1,38 @@
+# ==============================================================================
+# RetinaVision AI — Pinned Production Requirements
+# Generated from: pip freeze (venv, 2026-10-12)
+# ==============================================================================
+
+# ── PyTorch CPU-only wheels (installed separately in Dockerfile) ──────────────
+# These are listed here for documentation only.
+# The Dockerfile installs them via the CPU index URL to avoid the 2.5 GB CUDA build.
+#   pip install torch==2.5.1+cpu torchvision==0.20.1+cpu \
+#       --extra-index-url https://download.pytorch.org/whl/cpu
+
+# ── Core ML / Vision ─────────────────────────────────────────────────────────
+timm==1.0.28
+# opencv-python-headless is used in Docker (no display server needed in container).
+# Local dev uses opencv-python==5.0.0.93 (installed by grad-cam dependency).
+opencv-python-headless==4.10.0.84
+Pillow==12.2.0
+scipy==1.18.0
+numpy==2.4.4
+grad-cam==1.5.5
+
+# ── Reporting ─────────────────────────────────────────────────────────────────
+reportlab==5.0.0
+matplotlib==3.11.1
+
+# ── FastAPI stack ─────────────────────────────────────────────────────────────
+fastapi==0.141.1
+uvicorn==0.52.4
+python-multipart==0.0.32
+aiofiles==24.1.0
+
+# ── Data / ORM ────────────────────────────────────────────────────────────────
+pydantic==2.13.5
+SQLAlchemy==2.0.54
+
+# ── Config / Security ─────────────────────────────────────────────────────────
+python-dotenv==1.2.2
+passlib==1.7.4

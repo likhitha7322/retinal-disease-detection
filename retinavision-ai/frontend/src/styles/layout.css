@@ -1,0 +1,362 @@
+@import './variables.css';
+
+/* Overall App Shell */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--background);
+  position: relative;
+}
+
+/* ============================================================
+   DARK NAVY HOSPITAL SIDEBAR (Fixed Desktop, Collapsible Mobile)
+   ============================================================ */
+.sidebar {
+  width: var(--sidebar-width);
+  background-color: var(--dark-navy);
+  color: #D1DCE5;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.12);
+  transition: transform 0.25s ease;
+  user-select: none;
+}
+
+/* Brand Header */
+.sidebar-header {
+  height: var(--topbar-height);
+  padding: 0 var(--space-5);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.brand-symbol {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  background-color: var(--primary-teal);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.brand-text h1 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.2px;
+  line-height: 1.15;
+}
+
+.brand-text p {
+  font-size: 10px;
+  color: #8CA0B2;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  margin-top: 2px;
+}
+
+/* Sidebar Navigation Groups */
+.sidebar-nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-4) var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.nav-group-title {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #6C8295;
+  padding: 0 var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 9px var(--space-3);
+  border-radius: var(--radius-sm);
+  color: #B2C4D2;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  color: var(--white);
+}
+
+.nav-link.active {
+  background-color: var(--primary-teal);
+  color: var(--white);
+  font-weight: 600;
+}
+
+.nav-link svg {
+  flex-shrink: 0;
+}
+
+/* Sidebar Footer / Engine Pill */
+.sidebar-footer {
+  padding: var(--space-4) var(--space-4);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.engine-pill {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  font-size: 11px;
+  color: #9AB0C2;
+}
+
+.engine-pill strong {
+  display: block;
+  color: var(--white);
+  font-weight: 600;
+  font-size: 11.5px;
+}
+
+/* ============================================================
+   MAIN CONTENT WRAPPER
+   ============================================================ */
+.main-wrapper {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  background-color: var(--background);
+}
+
+/* ============================================================
+   TOPBAR
+   ============================================================ */
+.topbar {
+  height: var(--topbar-height);
+  background-color: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 0 var(--space-7);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: var(--shadow-sm);
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-main);
+  cursor: pointer;
+  padding: 4px;
+}
+
+.topbar-title h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary-navy);
+  line-height: 1.2;
+}
+
+.topbar-title p {
+  font-size: 11.5px;
+  color: var(--muted-text);
+  margin-top: 1px;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background-color: var(--success-bg);
+  border: 1px solid var(--success-border);
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--success);
+}
+
+.live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--success);
+  box-shadow: 0 0 6px var(--success);
+}
+
+.topbar-divider {
+  width: 1px;
+  height: 24px;
+  background-color: var(--border);
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  user-select: none;
+}
+
+.user-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: var(--navy-light);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.user-info {
+  line-height: 1.2;
+}
+
+.user-name {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.user-role {
+  font-size: 11px;
+  color: var(--muted-text);
+}
+
+/* ============================================================
+   PAGE MAIN CONTENT CONTAINER
+   ============================================================ */
+.content-area {
+  flex: 1;
+  max-width: var(--max-content-width);
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-7) var(--space-8);
+  position: relative;
+  z-index: 2;
+}
+
+/* ============================================================
+   INSTITUTIONAL FOOTER
+   ============================================================ */
+.site-footer {
+  padding: var(--space-4) var(--space-7);
+  text-align: center;
+  font-size: 11.5px;
+  color: var(--muted-text);
+  border-top: 1px solid var(--border);
+  background-color: var(--white);
+  margin-top: auto;
+  position: relative;
+  z-index: 5;
+}
+
+/* Mobile Sidebar Backdrop */
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(11, 36, 56, 0.5);
+  backdrop-filter: blur(2px);
+  z-index: 95;
+}
+
+/* ============================================================
+   RESPONSIVE BREAKPOINTS
+   ============================================================ */
+@media (max-width: 1024px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.mobile-open {
+    transform: translateX(0);
+  }
+
+  .sidebar-backdrop.mobile-open {
+    display: block;
+  }
+
+  .main-wrapper {
+    margin-left: 0;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  .content-area {
+    padding: var(--space-5) var(--space-5) var(--space-7);
+  }
+
+  .topbar {
+    padding: 0 var(--space-5);
+  }
+}
+
+@media (max-width: 640px) {
+  .user-info {
+    display: none;
+  }
+
+  .live-badge span {
+    display: none;
+  }
+
+  .live-badge {
+    padding: 6px;
+  }
+
+  .content-area {
+    padding: var(--space-4) var(--space-3) var(--space-6);
+  }
+}
+

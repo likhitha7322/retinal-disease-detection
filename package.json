@@ -1,0 +1,14 @@
+{
+  "name": "retinavision-ai-root",
+  "version": "2.1.0",
+  "description": "Root workspace shortcuts for RetinaVision AI full-stack platform",
+  "scripts": {
+    "start": "cmd /c start_all.bat",
+    "frontend": "npm --prefix retinavision-ai/frontend run dev",
+    "backend": "npm --prefix retinavision-ai/backend start",
+    "dev": "npm --prefix retinavision-ai/frontend run dev",
+    "build:frontend": "npm --prefix retinavision-ai/frontend run build",
+    "test:ai": ".\\venv\\Scripts\\pytest tests"
+  }
+}
+

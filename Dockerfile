@@ -66,14 +66,14 @@ USER appuser
 ENV RETINA_MODEL_BUNDLE=/app/model_bundle_v2.1.0 \
     PYTHONUNBUFFERED=1 \
     PORT=8000 \
-    # Configurable upload retention (seconds). Default = 86400 = 24 h.
     UPLOAD_RETENTION_SECONDS=86400
 
+# Cloud Run injects $PORT at runtime; expose 8000 as default for local/HF use
 EXPOSE 8000
 
-# Health check (gives model 60 s to load before first probe)
-HEALTHCHECK --interval=30s --timeout=15s --start-period=60s --retries=3 \
-    CMD curl -f http://localhost:8000/health || exit 1
+# Health check (used by Docker / HF; Cloud Run uses its own probe)
+HEALTHCHECK --interval=30s --timeout=15s --start-period=90s --retries=3 \
+    CMD curl -f http://localhost:${PORT:-8000}/health || exit 1
 
-# Launch single-worker server (1 worker = predictable VRAM/RAM usage)
-CMD ["uvicorn", "retina_ai.api:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1"]
+# Use shell form so $PORT is expanded at runtime (required for Cloud Run)
+CMD uvicorn retina_ai.api:app --host 0.0.0.0 --port ${PORT:-8000} --workers 1
